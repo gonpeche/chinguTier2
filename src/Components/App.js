@@ -1,21 +1,54 @@
 import React from 'react';
 import './index.css';
-import Grilla from './Grilla'
+// @components
+// import Grilla from './Grilla'
+import Row from './Row'
+
 
 export default class Main extends React.Component {
-  state = {
-    board: new Array(6).fill(null).map(a => new Array(6).fill(null))
+  constructor(props) {
+    super(props)
+    this.state = {
+      board: new Array(6).fill(null).map(a => new Array(7).fill(null))
+    }
+    this.addPiece = this.addPiece.bind(this)
   }
+
+  addPiece(columna) {
+    const { board } = this.state;
+    const boardUpdated = board.slice();
+
+    for (let fila = 5; fila >= 0; fila--) {
+      if (boardUpdated[fila][columna] === null) {
+        boardUpdated[fila][columna] = 0;
+        break;
+      }
+
+    }
+
+    this.setState({
+      board: boardUpdated
+    })
+  }
+    
+  
   render() {
+    const { board } = this.state
     return (
       <div className="App">
         <header className="App-header">
          Chingu Tier 2 Challenge - Connect 4
         </header>
         <content className="App-content">
-          <Grilla 
-            board={this.state.board}
-          />
+          <div className="Grilla">
+              {board ? board.map((row,i) => (
+                  <Row 
+                      addPiece={this.addPiece}
+                      row={row}
+                      key={i}
+                  />
+              )) : null}
+          </div>
         </content>
         <footer className="App-footer">
          Reset Game

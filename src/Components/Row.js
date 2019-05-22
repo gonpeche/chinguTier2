@@ -1,13 +1,23 @@
 // @core
-import React from 'react';
+import React, { Component } from 'react'
 import './index.css';
 
-const Row = ({ row }) => (
-    <div className="Grilla-row">
-        {row.map((cell, i) => (
-            <div className="Grilla-celda" key={i}>{cell}</div>
-        ))}
-    </div>  
-);
-
-export default Row;
+export default class Row extends Component {
+    ficha(columna) {
+        console.log(columna)
+    }
+    render() {
+        const { row, addPiece } = this.props
+        return (
+            <div className="Grilla-row">
+                {row.map((cell, id) => (
+                    <div className="Grilla-celda"
+                        onClick={() => addPiece(id)}
+                        key={id}>
+                        {cell}
+                    </div>
+                ))}
+            </div>  
+        )
+    }
+}
