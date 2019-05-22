@@ -1,15 +1,18 @@
-import React, { Component } from 'react'
+// @core
+import React from 'react';
+import './index.css';
 
-export default class Grilla extends Component {
-    state = {
-        board: new Array(6).fill(null).map(a => new Array(6).fill(null))
-    }
-    render() {
-        console.log(this.state.board)
-        return (
-            <div>
-                
-            </div>
-        )
-    }
-}
+// @components
+import Row from './Row'
+
+const Grilla = ({ board }) => (
+    <div className="Grilla">
+        {board ? board.map(row => (
+            <Row 
+                row={row}
+            />
+        )) : null}
+    </div>
+);
+
+export default Grilla;
