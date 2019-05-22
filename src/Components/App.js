@@ -7,8 +7,13 @@ function Main() {
     <div className="App">
       <header className="App-header">
         Chingu Tier 2 Challenge - Connect 4
-        <Grilla />
       </header>
+      <content className="App-content">
+        <Grilla />
+      </content>
+      <footer className="App-footer">
+        Reset Game
+      </footer>
     </div>
   );
 }
