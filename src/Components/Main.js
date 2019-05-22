@@ -1,11 +1,13 @@
 import React from 'react';
-import './Main.css';
+import './index.css';
+import Grilla from './Grilla'
 
 function Main() {
   return (
     <div className="App">
       <header className="App-header">
         Chingu Tier 2 Challenge - Connect 4
+        <Grilla />
       </header>
     </div>
   );
