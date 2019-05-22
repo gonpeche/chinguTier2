@@ -4,7 +4,7 @@ import Grilla from './Grilla'
 
 export default class Main extends React.Component {
   state = {
-    board: new Array(6).fill(null).map(a => new Array(6).fill(1))
+    board: new Array(6).fill(null).map(a => new Array(6).fill(null))
   }
   render() {
     return (

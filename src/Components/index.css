@@ -21,11 +21,23 @@
 
 .Grilla {
   border: 1px solid red;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
+.Grilla-row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 1px;
+  padding-right: 1px;
+}
 .Grilla-celda {
   border: 1px solid white;
   display: inline-block;
-  padding: 35px;
+  padding: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 50%;
+  height: 5px;
+  width: 5px;
+  align-content: center;
 }

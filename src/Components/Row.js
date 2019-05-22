@@ -3,9 +3,9 @@ import React from 'react';
 import './index.css';
 
 const Row = ({ row }) => (
-    <div>
-        {row.map(cell => (
-            <div className="Grilla-celda">{cell}</div>
+    <div className="Grilla-row">
+        {row.map((cell, i) => (
+            <div className="Grilla-celda" key={i}>{cell}</div>
         ))}
     </div>  
 );
