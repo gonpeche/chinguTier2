@@ -3,47 +3,45 @@ import React, { Component } from 'react'
 import './index.css';
 
 export default class Row extends Component {
-    state = {
-        position: ''
+    constructor(props) {
+        super(props);
+        this.clicked = this.clicked.bind(this)
+
     }
 
     clicked(column) {
-        const position = this.props.addPiece(column)
-        this.setState({ position })
+        this.props.addPiece(column)
     }
     
     render() {
-        const { row, board } = this.props;
-        const { position } = this.state
-        let cellColor = "Grilla-celda"
-            // let x = position[0];
-            // let y = position[1];
-        if (board && position) {
-            // console.log(board[x][y])
-
-            // if (board[x][y] === true) {
-            //     cellColor += '-red'
-
-            // } else if (board[x][y] === false) {
-            //     cellColor += '-blue'
-                
-            // } else {
-            //     cellColor = "Grilla-celda"
-            // }
-        }
-
-
+        const { row } = this.props;
         return (
             <div className="Grilla-row">
                 {row.map((cell, id) => (
-                    <div
-                        className={cellColor}
-                        onClick={() => this.clicked(id)}
-                        key={id}>
-                        {cell}
-                    </div>
+                    <Cell 
+                        key={id}
+                        id={id}
+                        value={cell}
+                        clicked={this.clicked}
+                    />
                 ))}
             </div>  
         )
     }
+}
+
+const Cell = ({ value, id, clicked }) => {
+    let color = 'Grilla-celda'
+    if (value === true) {
+        color = 'Grilla-celda-red'
+    } else if (value === false) {
+        color = 'Grilla-celda-blue'
+    }
+
+    return (
+        <div className={color} onClick={() => clicked(id)}>
+            {value}
+        </div>
+
+    )
 }

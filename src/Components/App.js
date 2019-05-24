@@ -1,7 +1,6 @@
 import React from 'react';
 import './index.css';
 // @components
-// import Grilla from './Grilla'
 import Row from './Row'
 
 
@@ -33,19 +32,12 @@ export default class Main extends React.Component {
 
     this.setState({
       board: boardUpdated,
-      playerOne: !player
+      playerOne: !player,
     })
-    console.log(board)
-    return position
   }
-
-  position(fila,columa) {
-
-  }
-    
   
   render() {
-    const { board } = this.state
+    const { board, position } = this.state
 
     return (
       <div className="App">
@@ -58,6 +50,7 @@ export default class Main extends React.Component {
                   <Row 
                       addPiece={this.addPiece}
                       board={board ? board : null}
+                      position={position ? position : null}
                       row={row}
                       key={i}
                   />
