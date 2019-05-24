@@ -9,31 +9,44 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      board: new Array(6).fill(null).map(a => new Array(7).fill(null))
+      board: new Array(6).fill(null).map(a => new Array(7).fill(null)),
+      playerOne: true
     }
     this.addPiece = this.addPiece.bind(this)
   }
 
   addPiece(columna) {
-    const { board } = this.state;
+    const { board, playerOne } = this.state;
     const boardUpdated = board.slice();
+    const player = playerOne
+    let position;
 
     for (let fila = 5; fila >= 0; fila--) {
       if (boardUpdated[fila][columna] === null) {
-        boardUpdated[fila][columna] = 0;
+        position = [fila, columna]
+        
+        boardUpdated[fila][columna] = playerOne;
+
         break;
       }
-
     }
 
     this.setState({
-      board: boardUpdated
+      board: boardUpdated,
+      playerOne: !player
     })
+    console.log(board)
+    return position
+  }
+
+  position(fila,columa) {
+
   }
     
   
   render() {
     const { board } = this.state
+
     return (
       <div className="App">
         <header className="App-header">
@@ -44,6 +57,7 @@ export default class Main extends React.Component {
               {board ? board.map((row,i) => (
                   <Row 
                       addPiece={this.addPiece}
+                      board={board ? board : null}
                       row={row}
                       key={i}
                   />
