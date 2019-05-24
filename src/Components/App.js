@@ -18,14 +18,10 @@ export default class Main extends React.Component {
     const { board, playerOne } = this.state;
     const boardUpdated = board.slice();
     const player = playerOne
-    let position;
-
+    
     for (let fila = 5; fila >= 0; fila--) {
       if (boardUpdated[fila][columna] === null) {
-        position = [fila, columna]
-        
         boardUpdated[fila][columna] = playerOne;
-
         break;
       }
     }

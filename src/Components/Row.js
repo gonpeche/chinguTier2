@@ -6,7 +6,6 @@ export default class Row extends Component {
     constructor(props) {
         super(props);
         this.clicked = this.clicked.bind(this)
-
     }
 
     clicked(column) {
