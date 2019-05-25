@@ -18,10 +18,12 @@ export default class Main extends React.Component {
     const { board, playerOne } = this.state;
     const boardUpdated = board.slice();
     const player = playerOne
+    let position;
     
     for (let fila = 5; fila >= 0; fila--) {
       if (boardUpdated[fila][columna] === null) {
         boardUpdated[fila][columna] = playerOne;
+        position = [fila, columna]
         break;
       }
     }
@@ -30,11 +32,30 @@ export default class Main extends React.Component {
       board: boardUpdated,
       playerOne: !player,
     })
+
+
+    if(position !== undefined) {
+      this.checkWinner(position[0], position[1])
+    } 
+  }
+
+  checkWinner(x, y) {
+    this.checkHorizontal(x, y)
+  }
+
+  checkHorizontal(x, y) {
+    const { board } = this.state
+    console.log('position:',x, '-',y)
+    console.log(board)
+    for (var i = 0; i < 6; i++) {
+      if (board[x-i][y] === undefined) break;
+      if (board[x-i][y] === null) break;
+      console.log(board[x-i][y])
+    }
   }
   
   render() {
     const { board, position } = this.state
-
     return (
       <div className="App">
         <header className="App-header">
