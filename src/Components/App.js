@@ -66,26 +66,24 @@ export default class Main extends React.Component {
     function checkRight() {
       let count = 0;
       for (var i = 1; i < 4; i++) {
-        if (board[y+i] === undefined) break; 
-        if (board[x][y+i] !== player) break;
-        console.log('check', board[x][y+i])
-        if (board[x][y+i] === player) {
-          console.log('bingo')
-          count++;
-        }
-
-        if (count === 3) {
-          console.log('cabio')
-        }
-        // console.log(board[x][y+1])
+        if (board[y+i] === undefined || board[x][y+i] !== player) break; 
+        if (board[x][y+i] === player) count++;
+        if (count === 3) return true
       }
       return false
     }
 
-    if (checkRight()) {
-      console.log('winer!')
+    function checkLeft() {
+      let count = 0;
+      for (var i = 1; i < 4; i++) {
+        if (board[y-i] === undefined || board[x][y-i] !== player) break; 
+        if (board[x][y-i] === player) count++;
+        if (count === 3) return true
+      }
+      return false
     }
 
+    if (checkRight() || checkLeft()) return true
   }
   
   render() {
