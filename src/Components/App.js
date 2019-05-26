@@ -33,25 +33,35 @@ export default class Main extends React.Component {
       playerOne: !player,
     })
 
-
     if(position !== undefined) {
-      this.checkWinner(position[0], position[1])
+      this.checkWinner(position[0], position[1], playerOne)
     } 
   }
 
-  checkWinner(x, y) {
-    this.checkHorizontal(x, y)
+  checkWinner(x, y, player) {
+    const vertical = this.checkVertical(x, y, player)
+    const horizontal = this.checkHorizontal(x, y, player)
+
+    if (vertical || horizontal) {
+      console.log('WINER')
+    }
   }
 
-  checkHorizontal(x, y) {
-    const { board } = this.state
-    console.log('position:',x, '-',y)
-    console.log(board)
-    for (var i = 0; i < 6; i++) {
-      if (board[x-i][y] === undefined) break;
-      if (board[x-i][y] === null) break;
-      console.log(board[x-i][y])
+  checkVertical(x, y, player) {
+    const { board } = this.state;
+    if (x <= 2 && x >= 0) {
+      let count = 0;
+      for (var i = 0; i < 4; i++) {
+        if (board[x+i][y] !== player) break;
+        if (board[x+i][y] === player) count++;
+        if (count === 4) return true
+      }
     }
+    return false
+  }
+
+  checkHorizontal(x, y, player) {
+    const { board } = this.state;
   }
   
   render() {
