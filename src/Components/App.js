@@ -62,6 +62,30 @@ export default class Main extends React.Component {
 
   checkHorizontal(x, y, player) {
     const { board } = this.state;
+    
+    function checkRight() {
+      let count = 0;
+      for (var i = 1; i < 4; i++) {
+        if (board[y+i] === undefined) break; 
+        if (board[x][y+i] !== player) break;
+        console.log('check', board[x][y+i])
+        if (board[x][y+i] === player) {
+          console.log('bingo')
+          count++;
+        }
+
+        if (count === 3) {
+          console.log('cabio')
+        }
+        // console.log(board[x][y+1])
+      }
+      return false
+    }
+
+    if (checkRight()) {
+      console.log('winer!')
+    }
+
   }
   
   render() {
