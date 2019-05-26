@@ -11,16 +11,30 @@
 
 .App-header {
   padding: 10px 50px 10px 50px;
-  background-color: rgb(37, 18, 139);
+  background-color:rgb(33, 135, 56);
+}
+
+.App-header-1 {
+  padding: 10px 50px 10px 50px;
+  background-color:red;
+
+}
+.App-header-2 {
+  padding: 10px 50px 10px 50px;
+  background-color:blue;
+
 }
 
 .App-footer {
   padding: 10px 50px 10px 50px;
-  background-color: rgb(204, 58, 58);
+  background-color: rgb(18, 10, 10);
 }
 
 .Grilla {
-  border: 1px solid red;
+  border: 2px;
+  padding: 10px;
+  background-color:rgb(33, 135, 56);
+  cursor: pointer;
   /* padding: 20px; */
 }
 
@@ -40,6 +54,7 @@
   height: 5px;
   width: 5px;
   align-content: center;
+  background-color: white;
 }
 
 .Grilla-celda-red {
@@ -66,4 +81,8 @@
   width: 5px;
   align-content: center;
   background-color: blue
+}
+
+.App-footer {
+  cursor: pointer;
 }
