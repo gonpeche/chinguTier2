@@ -2,14 +2,15 @@ import React from 'react';
 import './index.css';
 // @components
 import Row from './Row'
-
-
+// @utlis
+import { checkHorizontal, checkVertical, checkDiagonal } from '../Utils/index'
 export default class Main extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       board: new Array(6).fill(null).map(a => new Array(7).fill(null)),
-      playerOne: true
+      playerOne: true,
+      winner: false
     }
     this.addPiece = this.addPiece.bind(this)
   }
@@ -30,7 +31,7 @@ export default class Main extends React.Component {
 
     this.setState({
       board: boardUpdated,
-      playerOne: !player,
+      playerOne: !player
     })
 
     if(position !== undefined) {
@@ -39,55 +40,21 @@ export default class Main extends React.Component {
   }
 
   checkWinner(x, y, player) {
-    const vertical = this.checkVertical(x, y, player)
-    const horizontal = this.checkHorizontal(x, y, player)
-
-    if (vertical || horizontal) {
-      console.log('WINER')
-    }
-  }
-
-  checkVertical(x, y, player) {
     const { board } = this.state;
-    if (x <= 2 && x >= 0) {
-      let count = 0;
-      for (var i = 0; i < 4; i++) {
-        if (board[x+i][y] !== player) break;
-        if (board[x+i][y] === player) count++;
-        if (count === 4) return true
-      }
-    }
-    return false
-  }
+    const vertical = checkVertical(x, y, player, board)
+    const horizontal = checkHorizontal(x, player, board)
+    const diagonal = checkDiagonal(player, board)
 
-  checkHorizontal(x, y, player) {
-    const { board } = this.state;
-    
-    function checkRight() {
-      let count = 0;
-      for (var i = 1; i < 4; i++) {
-        if (board[y+i] === undefined || board[x][y+i] !== player) break; 
-        if (board[x][y+i] === player) count++;
-        if (count === 3) return true
-      }
-      return false
+    if (vertical || horizontal || diagonal) {
+      this.setState({
+        winner: true
+      })
     }
-
-    function checkLeft() {
-      let count = 0;
-      for (var i = 1; i < 4; i++) {
-        if (board[y-i] === undefined || board[x][y-i] !== player) break; 
-        if (board[x][y-i] === player) count++;
-        if (count === 3) return true
-      }
-      return false
-    }
-
-    if (checkRight() || checkLeft()) return true
   }
   
   render() {
     const { board, position } = this.state
+
     return (
       <div className="App">
         <header className="App-header">
